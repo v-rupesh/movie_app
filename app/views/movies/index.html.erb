@@ -1,0 +1,35 @@
+<div class="movies-container">
+  <h1>Movies</h1>
+
+  <div class="search-form-container">
+    <%= form_tag movies_path, method: :get do %>
+      <%= text_field_tag :search, params[:search], placeholder: 'Search by movie title' %>
+      <%= submit_tag 'Search' %>
+    <% end %>
+  </div>
+</div>
+
+
+<table class="movie-table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Year</th>
+      <th>Poster</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @movies.each do |movie| %>
+      <tr>
+        <td><%= movie['Title'] %></td>
+        <td><%= movie['Year'] %></td>
+        <td><img src="<%= movie['Poster'] %>" alt="<%= movie['Title'] %> Poster" class="movie-poster"></td>
+        <td>
+          <%= link_to 'Details', movie_path(movie['imdbID']), class: "btn btn-details" %>
+          <%= link_to 'Add to Favorite', favorite_movie_path(movie['imdbID']), method: :post, class: "btn btn-favorite" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

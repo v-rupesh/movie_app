@@ -1,0 +1,22 @@
+<h1>Favorite Movies</h1>
+
+<table class="movie-table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Year</th>
+      <th>IMDb ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @favorite_movies.each do |movie| %>
+      <tr>
+        <td><%= movie.title %></td>
+        <td><%= movie.year %></td>
+        <td><%= movie.imdb_id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Back to Movies', movies_path, class: 'btn btn-primary' %>
